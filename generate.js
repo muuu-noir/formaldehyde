@@ -26,26 +26,23 @@ function esc(str) {
 
 // ── Generate index.html ──────────────────
 
-function catalogEntry(s) {
-  const thumb = s.img1
+function gridItem(s) {
+  const img = s.img1
     ? `<img src="img/gallery/${esc(s.img1)}" alt="No.${esc(s.id)}" loading="lazy">`
     : '';
   return `
-        <a href="case/${s.id}.html" class="catalog-entry reveal">
-          <span class="entry-num">${esc(s.id)}</span>
-          <div class="entry-body">
-            <p class="entry-title">${esc(s.title)}</p>
-            <p class="entry-medium">${esc(s.medium)} · ${esc(s.year)}</p>
-          </div>
-          <div class="entry-thumb">
-            ${thumb}
-          </div>
-        </a>`;
+    <a href="case/${s.id}.html" class="grid-item reveal">
+      ${img}
+      <div class="grid-overlay">
+        <span class="grid-num">${esc(s.id)}</span>
+        <p class="grid-title">${esc(s.title)}</p>
+      </div>
+    </a>`;
 }
 
 function buildIndex() {
-  const count   = specimens.length;
-  const entries = specimens.map(catalogEntry).join('\n');
+  const count = specimens.length;
+  const items = specimens.map(gridItem).join('\n');
 
   return `<!DOCTYPE html>
 <html lang="ja">
@@ -74,23 +71,16 @@ function buildIndex() {
 
   <main>
     <div class="page">
-
       <section class="index-hero reveal">
         <p class="index-hero-label">Specimen Archive · Momoko Tezuka</p>
         <h1 class="index-hero-title">Preserved in the fluid<br>of unfinished time.</h1>
         <p class="index-hero-sub">${count} specimens · pencil, watercolor · 2025</p>
       </section>
-
-      <section class="catalog">
-        <div class="catalog-header">
-          <span>No.</span>
-          <span>Specimen</span>
-          <span></span>
-        </div>
-${entries}
-
-      </section>
     </div>
+
+    <section class="specimen-grid">
+${items}
+    </section>
   </main>
 
   <footer class="site-footer">
