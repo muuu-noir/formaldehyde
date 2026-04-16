@@ -351,6 +351,7 @@ h1, h2, h3 { font-weight: 400; }
 /* Article Body */
 .case-body {
   max-width: 640px;
+  margin: 0 auto;
 }
 
 .case-body h2 {
