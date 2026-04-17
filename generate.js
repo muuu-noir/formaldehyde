@@ -53,7 +53,7 @@ function buildIndex() {
   <meta property="og:type" content="website">
   <meta property="og:image" content="https://mog147.github.io/formaldehyde/img/gallery/${esc(specimens[0].img1)}">
   <meta name="twitter:card" content="summary_large_image">
-  <link rel="icon" href="https://mog147.github.io/mysite/img/profile/profile_avatar.png">
+  <link rel="icon" href="https://mog147.github.io/img/profile/profile_avatar.png">
   <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
@@ -122,7 +122,7 @@ function buildCase(s, prev, next) {
   <meta property="og:type" content="article">
   <meta property="og:image" content="https://mog147.github.io/formaldehyde/img/gallery/${esc(s.img1)}">
   <meta name="twitter:card" content="summary_large_image">
-  <link rel="icon" href="https://mog147.github.io/mysite/img/profile/profile_avatar.png">
+  <link rel="icon" href="https://mog147.github.io/img/profile/profile_avatar.png">
   <link rel="stylesheet" href="../css/main.css">
 </head>
 <body>
