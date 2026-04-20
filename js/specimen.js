@@ -92,6 +92,7 @@ function renderSpecimen(s, all) {
 
   // Reveal
   content.style.opacity = '1';
+  document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
 }
 
 function showError() {
