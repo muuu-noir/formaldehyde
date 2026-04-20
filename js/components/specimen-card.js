@@ -8,6 +8,7 @@ class SpecimenCard extends HTMLElement {
     this.innerHTML = `
       <a href="${rootPath}/specimen.html?id=${id}" class="grid-item reveal">
         <img src="${rootPath}/img/gallery/${img}" alt="No.${id}" loading="lazy">
+        <span class="grid-badge">${id}</span>
         <div class="grid-overlay">
           <span class="grid-num">${id}</span>
           <p class="grid-title">${title}</p>
