@@ -14,12 +14,12 @@ a { color: inherit; text-decoration: none; }
 :root {
   --bg:          #070707;
   --bg-card:     #0b0b09;
-  --line:        #191914;
-  --line-mid:    #252520;
-  --text:        #cac5b9;
-  --text-muted:  #5e5e56;
-  --text-dim:    #303028;
-  --accent:      #3d5a48;
+  --line:        #1e1e18;
+  --line-mid:    #2e2e26;
+  --text:        #d4cfc3;
+  --text-muted:  #8c8c80;
+  --text-dim:    #4a4a42;
+  --accent:      #8eb88e;
   --accent-pale: #1e2e24;
   --serif:       'EB Garamond', Georgia, serif;
   --mono:        'Space Mono', 'Courier New', monospace;
@@ -101,7 +101,7 @@ a, button { cursor: crosshair; }
   transition: color 0.4s var(--ease);
 }
 
-.site-nav a:hover { color: var(--text); }
+.site-nav a:hover { color: var(--accent); }
 
 /* ── Page Wrapper ── */
 .page {
@@ -259,7 +259,7 @@ a, button { cursor: crosshair; }
   transition: color 0.3s var(--ease);
 }
 
-.footer-note a:hover { color: var(--text); }
+.footer-note a:hover { color: var(--accent); }
 
 /* ── Case Page ── */
 .case-page {
@@ -280,7 +280,7 @@ a, button { cursor: crosshair; }
   transition: color 0.4s var(--ease), gap 0.35s var(--ease);
 }
 
-.case-back:hover { color: var(--text); gap: 1rem; }
+.case-back:hover { color: var(--accent); gap: 1rem; }
 
 .case-back::before {
   content: '←';
@@ -458,7 +458,7 @@ a, button { cursor: crosshair; }
   max-width: 42%;
 }
 
-.case-nav-link:hover { color: var(--text); }
+.case-nav-link:hover { color: var(--accent); }
 .case-nav-link.prev { align-items: flex-start; }
 .case-nav-link.next { align-items: flex-end; text-align: right; }
 
@@ -533,8 +533,8 @@ a, button { cursor: crosshair; }
 }
 
 .about-folio-link:hover {
-  color: var(--text);
-  border-color: var(--text-muted);
+  color: var(--accent);
+  border-color: var(--accent);
 }
 
 /* ── Reveal animation ── */
