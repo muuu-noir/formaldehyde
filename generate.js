@@ -63,7 +63,7 @@ function buildIndex() {
     <div class="page">
       <section class="index-hero reveal">
         <p class="index-hero-label">Specimen Archive · Momoko Tezuka</p>
-        <h1 class="index-hero-title">Preserved in the fluid<br>of unfinished time.</h1>
+        <h1 class="index-hero-title">Time, preserved unfinished.</h1>
         <p class="index-hero-sub">${count} specimens · pencil, watercolor · 2025</p>
       </section>
     </div>
