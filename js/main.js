@@ -8,7 +8,30 @@ import './components/specimen-card.js';
 import './components/specimen-label.js';
 import './components/case-slider.js';
 
-// Image Slider logic is now encapsulated in CaseSlider component.
+// Load more — mobile only
+(function () {
+  if (window.innerWidth > 640) return;
+  const grid = document.querySelector('.specimen-grid');
+  if (!grid) return;
+
+  const total = grid.querySelectorAll('specimen-card').length;
+  if (total <= 4) return;
+
+  const btn = document.createElement('button');
+  btn.className = 'load-more';
+  btn.textContent = 'もっと見る  +' + (total - 4);
+  grid.insertAdjacentElement('afterend', btn);
+
+  btn.addEventListener('click', () => {
+    grid.classList.add('expanded');
+    grid.querySelectorAll('specimen-card').forEach(card => {
+      card.classList.add('visible');
+      const inner = card.querySelector('.reveal');
+      if (inner) inner.classList.add('visible');
+    });
+    btn.remove();
+  });
+})();
 
 // Reveal on scroll
 (function () {
