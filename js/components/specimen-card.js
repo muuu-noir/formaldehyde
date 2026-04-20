@@ -6,7 +6,7 @@ class SpecimenCard extends HTMLElement {
     const rootPath = this.getAttribute('root-path') || '.';
 
     this.innerHTML = `
-      <a href="${rootPath}/case/${id}.html" class="grid-item reveal">
+      <a href="${rootPath}/specimen.html?id=${id}" class="grid-item reveal">
         <img src="${rootPath}/img/gallery/${img}" alt="No.${id}" loading="lazy">
         <div class="grid-overlay">
           <span class="grid-num">${id}</span>

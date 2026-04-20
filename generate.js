@@ -2,7 +2,7 @@
 // ─────────────────────────────────────────
 // FORMALDEHYDE · generate.js
 // Usage: node generate.js
-// Reads data/specimens.json → writes index.html + case/*.html
+// Reads data/specimens.json → writes index.html + SEO files
 // ─────────────────────────────────────────
 
 const fs   = require('fs');
@@ -10,7 +10,6 @@ const path = require('path');
 
 const ROOT      = __dirname;
 const DATA_FILE = path.join(ROOT, 'data', 'specimens.json');
-const CASE_DIR  = path.join(ROOT, 'case');
 
 const specimens = JSON.parse(fs.readFileSync(DATA_FILE, 'utf8'));
 
@@ -83,94 +82,6 @@ ${items}
 `;
 }
 
-// ── Generate case/XXX.html ────────────────
-
-function bodySection(heading, paras) {
-  const ps = paras.map(p => `        <p>${p}</p>`).join('\n');
-  return `
-        <h2>${esc(heading)}</h2>
-${ps}`;
-}
-
-function buildCase(s, prev, next) {
-  const bodySections = Object.entries(s.body)
-    .map(([h, ps]) => bodySection(h, ps))
-    .join('\n');
-
-  const prevLink = prev
-    ? `<a href="${prev.id}.html" class="case-nav-link prev">
-        <span class="nav-dir">← Prev</span>
-        <span class="nav-title">${esc(prev.title)}</span>
-      </a>`
-    : `<span></span>`;
-
-  const nextLink = next
-    ? `<a href="${next.id}.html" class="case-nav-link next">
-        <span class="nav-dir">Next →</span>
-        <span class="nav-title">${esc(next.title)}</span>
-      </a>`
-    : `<span></span>`;
-
-  return `<!DOCTYPE html>
-<html lang="ja">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>No.${esc(s.id)} — ${esc(s.title)} | FORMALDEHYDE</title>
-  <meta name="description" content="${esc(s.title)} — ${esc(s.medium)}による作品。">
-  <meta property="og:title" content="No.${esc(s.id)} — ${esc(s.title)} | FORMALDEHYDE">
-  <meta property="og:type" content="article">
-  <meta property="og:image" content="https://mog147.github.io/formaldehyde/img/gallery/${esc(s.img1)}">
-  <meta name="twitter:card" content="summary_large_image">
-  <link rel="icon" href="https://mog147.github.io/img/profile/profile_avatar.png">
-  <link rel="stylesheet" href="../css/main.css">
-</head>
-<body>
-
-  <site-header root-path=".."></site-header>
-
-  <main>
-    <div class="page case-page">
-
-      <a href="../index.html" class="case-back reveal">Back to Archive</a>
-
-      <specimen-label 
-        specimen-id="${esc(s.id)}" 
-        title="${esc(s.title)}" 
-        medium="${esc(s.medium)}" 
-        year="${esc(s.year)}"
-      ></specimen-label>
-
-      <case-slider 
-        img1="${esc(s.img1)}" 
-        img2="${esc(s.img2)}" 
-        title="No.${esc(s.id)} — ${esc(s.title)}"
-      ></case-slider>
-
-      <!-- Body -->
-      <article class="case-body">
-${bodySections}
-
-      </article>
-
-      <!-- Navigation -->
-      <nav class="case-nav">
-      ${prevLink}
-      ${nextLink}
-      </nav>
-
-    </div>
-  </main>
-
-  <site-footer></site-footer>
-
-
-  <script type="module" src="../js/main.js"></script>
-</body>
-</html>
-`;
-}
-
 // ── Generate sitemap.xml ───────────────
 
 function buildSitemap() {
@@ -178,7 +89,7 @@ function buildSitemap() {
   const urls = [
     '',
     'about.html',
-    ...specimens.map(s => `case/${s.id}.html`)
+    ...specimens.map(s => `specimen.html?id=${s.id}`)
   ];
 
   const xmlUrls = urls.map(u => `
@@ -208,15 +119,6 @@ Sitemap: ${BASE_URL}sitemap.xml
 // index.html
 fs.writeFileSync(path.join(ROOT, 'index.html'), buildIndex());
 console.log('✓ index.html');
-
-// case/*.html
-specimens.forEach((s, i) => {
-  const prev = i > 0 ? specimens[i - 1] : null;
-  const next = i < specimens.length - 1 ? specimens[i + 1] : null;
-  const html = buildCase(s, prev, next);
-  fs.writeFileSync(path.join(CASE_DIR, `${s.id}.html`), html);
-  console.log(`✓ case/${s.id}.html`);
-});
 
 // SEO files
 fs.writeFileSync(path.join(ROOT, 'sitemap.xml'), buildSitemap());

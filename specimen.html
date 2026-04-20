@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Specimen Detail | FORMALDEHYDE</title>
+  <meta name="description" content="標本の詳細情報。">
+  <link rel="icon" href="https://mog147.github.io/img/profile/profile_avatar.png">
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+
+  <site-header></site-header>
+
+  <main>
+    <div id="specimen-content" class="page case-page" style="opacity: 0; transition: opacity 0.4s ease;">
+
+      <a href="index.html" class="case-back">Back to Archive</a>
+
+      <div id="label-container"></div>
+      <div id="slider-container"></div>
+
+      <!-- Body -->
+      <article id="specimen-body" class="case-body">
+        <!-- Content injected via JS -->
+      </article>
+
+      <!-- Navigation -->
+      <nav id="specimen-nav" class="case-nav">
+        <!-- Links injected via JS -->
+      </nav>
+
+    </div>
+
+    <!-- Error State -->
+    <div id="error-content" class="page" style="display: none; text-align: center; padding: 100px 20px;">
+      <h1>Specimen Not Found</h1>
+      <p>指定された作品が見つかりませんでした。</p>
+      <a href="index.html" style="text-decoration: underline;">Archiveへ戻る</a>
+    </div>
+  </main>
+
+  <site-footer></site-footer>
+
+  <script type="module" src="js/main.js"></script>
+  <script type="module" src="js/specimen.js"></script>
+</body>
+</html>
