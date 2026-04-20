@@ -52,6 +52,7 @@ function buildIndex() {
   <meta property="og:type" content="website">
   <meta property="og:image" content="https://mog147.github.io/formaldehyde/img/gallery/${esc(specimens[0].img1)}">
   <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://mog147.github.io/formaldehyde/">
   <link rel="icon" href="https://mog147.github.io/img/profile/profile_avatar.png">
   <link rel="stylesheet" href="css/main.css">
 </head>

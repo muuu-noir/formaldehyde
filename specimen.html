@@ -7,6 +7,15 @@
   <meta name="description" content="標本の詳細情報。">
   <link rel="icon" href="https://mog147.github.io/img/profile/profile_avatar.png">
   <link rel="stylesheet" href="css/main.css">
+  <script>
+    const _id = new URLSearchParams(location.search).get('id');
+    if (_id) {
+      const _c = document.createElement('link');
+      _c.rel = 'canonical';
+      _c.href = 'https://mog147.github.io/formaldehyde/specimen.html?id=' + _id;
+      document.head.appendChild(_c);
+    }
+  </script>
 </head>
 <body>
 
