@@ -52,6 +52,14 @@ function buildIndex() {
   <meta property="og:type" content="website">
   <meta property="og:image" content="https://mog147.github.io/formaldehyde/img/gallery/${esc(specimens[0].img1)}">
   <meta name="twitter:card" content="summary_large_image">
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-7X20Z1E5FF"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-7X20Z1E5FF');
+  </script>
   <link rel="canonical" href="https://mog147.github.io/formaldehyde/">
   <link rel="icon" href="https://mog147.github.io/img/profile/profile_avatar.png">
   <link rel="stylesheet" href="css/main.css">
