@@ -164,6 +164,26 @@
       50%       { opacity: 0.5; }
     }
 
+    /* ── Back to top ── */
+    .room-logo {
+      position: fixed;
+      top: 1.5rem;
+      left: 2.5rem;
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.42em;
+      color: var(--text);
+      text-transform: uppercase;
+      text-decoration: none;
+      z-index: 100;
+      opacity: 0;
+      animation: hint-in 1s var(--ease) 2s forwards;
+      transition: color 0.4s var(--ease);
+      text-shadow: 0 1px 8px rgba(0,0,0,0.9), 0 0 24px rgba(0,0,0,0.8);
+    }
+
+    .room-logo:hover { color: var(--accent); }
+
     /* ── Veil ── */
     #veil {
       position: fixed;
@@ -231,6 +251,8 @@
 </head>
 <body>
   <div id="veil"></div>
+
+  <a href="./index.html" class="room-logo">F&thinsp;O&thinsp;R&thinsp;M&thinsp;A&thinsp;L&thinsp;D&thinsp;E&thinsp;H&thinsp;Y&thinsp;D&thinsp;E</a>
 
   <div class="scene">
     <img class="room-img" src="img/room.png" alt="" draggable="false">
