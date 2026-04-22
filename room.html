@@ -171,26 +171,7 @@
 
     @keyframes hint-in { to { opacity: 0.45; } }
 
-    .room-findme {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      font-family: var(--serif);
-      font-style: italic;
-      font-size: clamp(1rem, 2vw, 1.4rem);
-      color: rgba(212,206,212,0.5);
-      letter-spacing: 0.08em;
-      pointer-events: none;
-      z-index: 20;
-      opacity: 0;
-      text-shadow: 0 0 20px rgba(0,0,0,0.9);
-      animation: findme-in 2s ease 3s forwards;
-    }
-
-    @keyframes findme-in { to { opacity: 1; } }
-
-    @keyframes zone-pulse {
+@keyframes zone-pulse {
       0%, 100% { opacity: 0.2; }
       50%       { opacity: 0.5; }
     }
@@ -237,19 +218,7 @@
         padding-bottom: 14%;
       }
 
-      .mobile-findme {
-        font-family: var(--serif);
-        font-style: italic;
-        font-size: 30vw;
-        color: rgba(212,206,212,0.45);
-        letter-spacing: 0.01em;
-        margin-bottom: 3rem;
-        line-height: 1.05;
-        opacity: 0;
-        animation: findme-in 1.8s ease 1.5s forwards;
-      }
-
-      .mobile-links {
+.mobile-links {
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -288,13 +257,10 @@
       <span class="note-label">About →</span>
     </div>
 
-    <p class="room-findme">find me.</p>
-
     <span class="room-hint">tap the shelf</span>
   </div>
 
   <div class="mobile-menu">
-    <p class="mobile-findme">find me.</p>
     <div class="mobile-links">
       <button class="mobile-link" id="m-archive">Archive</button>
       <button class="mobile-link" id="m-about">About</button>
