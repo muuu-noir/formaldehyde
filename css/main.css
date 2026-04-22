@@ -201,8 +201,7 @@ a, button { cursor: crosshair; }
   flex-direction: column;
   justify-content: flex-end;
   padding: 0.9rem;
-  background: linear-gradient(to top, rgba(7,7,7,0.88) 0%, rgba(7,7,7,0.15) 55%, transparent 100%);
-  opacity: 0;
+  background: linear-gradient(to top, rgba(7,7,7,0.72) 0%, rgba(7,7,7,0.08) 50%, transparent 100%);
   transition: opacity 0.5s var(--ease);
 }
 
@@ -211,22 +210,40 @@ a, button { cursor: crosshair; }
   transform: scale(1.03);
 }
 
-.grid-item:hover .grid-overlay { opacity: 1; }
-
 .grid-num {
   font-family: var(--mono);
   font-size: 0.75rem;
   letter-spacing: 0.22em;
   color: var(--text-muted);
   margin-bottom: 0.25rem;
+  opacity: 0;
+  transition: opacity 0.4s var(--ease);
 }
+
+.grid-item:hover .grid-num { opacity: 1; }
 
 .grid-title {
   font-family: var(--serif);
   font-size: 0.9rem;
   font-style: italic;
-  color: var(--text);
+  color: rgba(202, 197, 185, 0.5);
   line-height: 1.35;
+  transition: opacity 0.5s var(--ease);
+}
+
+.grid-item:hover .grid-title { opacity: 0; }
+
+/* 001 — primary specimen */
+specimen-card[specimen-id="001"] {
+  grid-column: span 2;
+  grid-row: span 2;
+  display: flex;
+  flex-direction: column;
+}
+
+specimen-card[specimen-id="001"] .grid-item {
+  aspect-ratio: unset;
+  flex: 1;
 }
 
 /* ── Site Footer ── */
