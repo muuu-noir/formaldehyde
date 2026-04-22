@@ -203,28 +203,67 @@
 
     #veil.closing { opacity: 1; }
 
-    /* ── Mobile: shift image right so books stay visible ── */
+    /* ── Mobile overlay menu ── */
+    .mobile-menu {
+      display: none;
+    }
+
     @media (max-width: 640px) {
       .room-img {
-        object-position: right center;
+        object-position: center;
       }
 
-      .book-zone { width: 42%; }
-      .note-zone { display: none; }
-
+      .book-zone,
+      .note-zone,
+      .room-hint,
       .room-findme {
-        top: auto;
-        bottom: 22%;
-        left: 5%;
-        transform: none;
-        font-size: 0.95rem;
+        display: none;
       }
 
-      .room-hint {
-        right: 50%;
-        transform: translateX(50%);
-        width: 60%;
+      .mobile-menu {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-end;
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to top, rgba(7,7,7,0.92) 0%, rgba(7,7,7,0.4) 55%, transparent 100%);
+        z-index: 20;
+        padding-bottom: 14%;
+        opacity: 0;
+        animation: findme-in 1.8s ease 2s forwards;
       }
+
+      .mobile-findme {
+        font-family: var(--serif);
+        font-style: italic;
+        font-size: 1.1rem;
+        color: rgba(212,206,212,0.45);
+        letter-spacing: 0.06em;
+        margin-bottom: 2.5rem;
+      }
+
+      .mobile-links {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1.4rem;
+      }
+
+      .mobile-link {
+        font-family: var(--mono);
+        font-size: 0.7rem;
+        letter-spacing: 0.45em;
+        color: var(--accent);
+        text-transform: uppercase;
+        cursor: pointer;
+        transition: color 0.3s var(--ease);
+        background: none;
+        border: none;
+        padding: 0;
+      }
+
+      .mobile-link:hover { color: var(--text); }
     }
   </style>
 </head>
@@ -246,6 +285,14 @@
     <p class="room-findme">find me.</p>
 
     <span class="room-hint">tap the shelf</span>
+
+    <div class="mobile-menu">
+      <p class="mobile-findme">find me.</p>
+      <div class="mobile-links">
+        <button class="mobile-link" id="m-archive">Archive</button>
+        <button class="mobile-link" id="m-about">About</button>
+      </div>
+    </div>
   </div>
 
   <script>
@@ -263,6 +310,9 @@
 
     books.addEventListener('click', () => navigate('./archive.html'));
     note.addEventListener('click',  () => navigate('./about.html'));
+
+    document.getElementById('m-archive')?.addEventListener('click', () => navigate('./archive.html'));
+    document.getElementById('m-about')?.addEventListener('click',   () => navigate('./about.html'));
   </script>
 </body>
 </html>
