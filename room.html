@@ -61,9 +61,9 @@
       position: absolute;
       inset: -10px;
       background: radial-gradient(ellipse at 55% 48%,
-        rgba(138,120,136,0.22) 0%, transparent 68%);
-      opacity: 0.35;
-      animation: zone-pulse 3.5s ease-in-out infinite;
+        rgba(180,150,160,0.45) 0%, transparent 65%);
+      opacity: 0.3;
+      animation: zone-pulse 3s ease-in-out infinite;
       pointer-events: none;
       transition: opacity 0.5s var(--ease);
     }
@@ -74,7 +74,7 @@
     /* Archive label — always visible */
     .book-label {
       position: absolute;
-      bottom: 13%;
+      top: 18%;
       left: 50%;
       transform: translateX(-50%);
       font-family: var(--mono);
@@ -114,9 +114,9 @@
       position: absolute;
       inset: -10px;
       background: radial-gradient(ellipse at 50% 60%,
-        rgba(138,120,136,0.22) 0%, transparent 70%);
-      opacity: 0.35;
-      animation: zone-pulse 3.5s ease-in-out 1.75s infinite;
+        rgba(180,150,160,0.45) 0%, transparent 65%);
+      opacity: 0.3;
+      animation: zone-pulse 3s ease-in-out 1.5s infinite;
       pointer-events: none;
       transition: opacity 0.5s var(--ease);
     }
@@ -169,9 +169,9 @@
 
     @keyframes hint-in { to { opacity: 0.45; } }
 
-@keyframes zone-pulse {
-      0%, 100% { opacity: 0.2; }
-      50%       { opacity: 0.5; }
+    @keyframes zone-pulse {
+      0%, 100% { opacity: 0.25; transform: scale(1); }
+      50%       { opacity: 0.9;  transform: scale(1.05); }
     }
 
     /* ── Back to top ── */
