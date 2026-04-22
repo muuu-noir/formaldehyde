@@ -15,7 +15,7 @@ class SpecimenLabel extends HTMLElement {
         <div class="label-right">
           <div class="label-meta-row"><span>Medium</span>${medium}</div>
           <div class="label-meta-row"><span>Year</span>${year}</div>
-          <div class="label-meta-row"><span>Collector</span>${collector}</div>
+          <div class="label-meta-row"><span>Collector</span><span style="text-transform:none">${collector}</span></div>
         </div>
       </div>
     `;
