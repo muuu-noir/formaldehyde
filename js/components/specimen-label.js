@@ -4,7 +4,7 @@ class SpecimenLabel extends HTMLElement {
     const title = this.getAttribute('title');
     const medium = this.getAttribute('medium');
     const year = this.getAttribute('year');
-    const collector = this.getAttribute('collector') || 'Momoko Tezuka';
+    const collector = this.getAttribute('collector') || 'μ';
 
     this.innerHTML = `
       <div class="specimen-label reveal">
