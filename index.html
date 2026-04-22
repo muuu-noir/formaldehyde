@@ -1,79 +1,97 @@
 <!DOCTYPE html>
 <html lang="ja">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>FORMALDEHYDE — Specimen Archive</title>
-  <meta name="description" content="Project「μ」の標本アーカイブ。鉛筆、水彩による作品群。">
-  <meta property="og:title" content="FORMALDEHYDE — Specimen Archive">
-  <meta property="og:description" content="Project「μ」の標本アーカイブ。鉛筆、水彩による作品群。">
-  <meta property="og:type" content="website">
-  <meta property="og:image" content="https://mog147.github.io/formaldehyde/img/gallery/pencil_1_1.PNG">
-  <meta name="twitter:card" content="summary_large_image">
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-7X20Z1E5FF"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
-    gtag('config', 'G-7X20Z1E5FF');
-  </script>
-  <link rel="canonical" href="https://mog147.github.io/formaldehyde/">
+  <title>FORMALDEHYDE</title>
   <link rel="icon" href="https://mog147.github.io/img/profile/profile_avatar.png">
   <link rel="stylesheet" href="css/main.css">
-</head>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      overflow: hidden;
+    }
 
+    .door-wrap {
+      position: relative;
+      width: min(320px, 70vw);
+      opacity: 0;
+      animation: door-arrive 1.8s var(--ease-out) 0.6s forwards;
+    }
+
+    @keyframes door-arrive {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .door-img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: transform 0.9s cubic-bezier(0.4, 0, 0.2, 1),
+                  filter 0.6s var(--ease);
+      filter: brightness(0.8);
+    }
+
+    .door-wrap:hover .door-img {
+      transform: perspective(1000px) scale(1.02);
+      filter: brightness(1);
+    }
+
+    .door-hint {
+      margin-top: 2.8rem;
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.38em;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      opacity: 0;
+      animation: hint-in 1s var(--ease) 3.5s forwards;
+    }
+
+    @keyframes hint-in {
+      to { opacity: 1; }
+    }
+
+    /* Transition overlay */
+    #veil {
+      position: fixed;
+      inset: 0;
+      background: var(--bg);
+      opacity: 0;
+      pointer-events: none;
+      z-index: 9000;
+      transition: opacity 0.85s var(--ease);
+    }
+
+    #veil.closing { opacity: 1; }
+  </style>
+</head>
 <body>
 
-  <site-header></site-header>
+  <div id="veil"></div>
 
-  <main>
-    <div class="page">
-      <section class="index-hero reveal">
-        <p class="index-hero-label">Specimen Archive · Project「<span style="text-transform:none">μ</span>」</p>
-        <h1 class="index-hero-title">Time, preserved unfinished.</h1>
-        <p class="index-hero-sub">14 specimens · pencil, watercolor · 2025</p>
-      </section>
-    </div>
+  <div class="door-wrap" id="door">
+    <img class="door-img" src="img/door.png" alt="Enter the archive" draggable="false">
+  </div>
+  <span class="door-hint">enter</span>
 
-    <section class="specimen-grid">
-      <specimen-card specimen-id="001" title="Neither is a lie. Both are me." img="pencil_1_1.PNG"
-        class="reveal"></specimen-card>
-      <specimen-card specimen-id="002" title="The brighter the light the darker the shadow." img="pencil_2_1.PNG"
-        class="reveal"></specimen-card>
-      <specimen-card specimen-id="003" title="Devouring the last innocence." img="pencil_3_1.PNG"
-        class="reveal"></specimen-card>
-      <specimen-card specimen-id="004"
-        title="He wears the sky like a bruise waiting for the rain to wash away his name." img="pencil_4_1.PNG"
-        class="reveal"></specimen-card>
-      <specimen-card specimen-id="005" title="Wandering through the void, where no one knows her name."
-        img="pencil_5_1.PNG" class="reveal"></specimen-card>
-      <specimen-card specimen-id="006" title="Cold arms, warm wings." img="pencil_6_1.PNG"
-        class="reveal"></specimen-card>
-      <specimen-card specimen-id="007" title="Style is her armor in a world that's fading to black."
-        img="pencil_7_1.PNG" class="reveal"></specimen-card>
-      <specimen-card specimen-id="008" title="A face without a name, a soul without a cage." img="pencil_8_1.PNG"
-        class="reveal"></specimen-card>
-      <specimen-card specimen-id="009" title="Even the light is a poison here." img="pencil_9_1.PNG"
-        class="reveal"></specimen-card>
-      <specimen-card specimen-id="010" title="Page 404: Person not found." img="pencil_10_1.webp"
-        class="reveal"></specimen-card>
-      <specimen-card specimen-id="011" title="Watching the stars burn out, one by one." img="pencil_11_1.webp"
-        class="reveal"></specimen-card>
-      <specimen-card specimen-id="012" title="Beauty is a parasite." img="pencil_12_1.PNG"
-        class="reveal"></specimen-card>
-      <specimen-card specimen-id="013" title="The circus is empty, but the paint never washes off."
-        img="pencil_13_1.PNG" class="reveal"></specimen-card>
-      <specimen-card specimen-id="014" title="Silence is the loudest song she knows." img="pencil_14_1.webp"
-        class="reveal"></specimen-card>
-    </section>
-  </main>
+  <script>
+    const door = document.getElementById('door');
+    const veil = document.getElementById('veil');
+    let entered = false;
 
-  <site-footer></site-footer>
+    door.addEventListener('click', () => {
+      if (entered) return;
+      entered = true;
+      veil.classList.add('closing');
+      setTimeout(() => { window.location.href = './archive.html'; }, 950);
+    });
+  </script>
 
-
-  <script type="module" src="js/main.js"></script>
 </body>
-
 </html>

@@ -2,7 +2,7 @@
 // ─────────────────────────────────────────
 // FORMALDEHYDE · generate.js
 // Usage: node generate.js
-// Reads data/specimens.json → writes index.html + SEO files
+// Reads data/specimens.json → writes archive.html + SEO files
 // ─────────────────────────────────────────
 
 const fs   = require('fs');
@@ -25,7 +25,7 @@ function esc(str) {
     .replace(/>/g, '&gt;');
 }
 
-// ── Generate index.html ──────────────────
+// ── Generate archive.html ──────────────────
 
 function gridItem(s) {
   return `    <specimen-card 
@@ -36,7 +36,7 @@ function gridItem(s) {
     ></specimen-card>`;
 }
 
-function buildIndex() {
+function buildArchive() {
   const count = specimens.length;
   const items = specimens.map(gridItem).join('\n');
 
@@ -97,6 +97,7 @@ function buildSitemap() {
   const lastmod = new Date().toISOString().split('T')[0];
   const urls = [
     '',
+    'archive.html',
     'about.html',
     ...specimens.map(s => `specimen.html?id=${s.id}`)
   ];
@@ -125,9 +126,9 @@ Sitemap: ${BASE_URL}sitemap.xml
 
 // ── Run ──────────────────────────────────
 
-// index.html
-fs.writeFileSync(path.join(ROOT, 'index.html'), buildIndex());
-console.log('✓ index.html');
+// archive.html
+fs.writeFileSync(path.join(ROOT, 'archive.html'), buildArchive());
+console.log('✓ archive.html');
 
 // SEO files
 fs.writeFileSync(path.join(ROOT, 'sitemap.xml'), buildSitemap());
