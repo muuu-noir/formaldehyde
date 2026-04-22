@@ -194,6 +194,31 @@
 
     .room-logo:hover { color: var(--accent); }
 
+    /* ── Find me intro (first visit, desktop only) ── */
+    #findme-intro {
+      position: fixed;
+      inset: 0;
+      background: #070707;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 99999;
+      opacity: 1;
+      transition: opacity 0.35s ease;
+      pointer-events: none;
+    }
+
+    #findme-intro.fade-out { opacity: 0; }
+
+    .findme-text {
+      font-family: var(--serif);
+      font-size: clamp(3rem, 8vw, 6rem);
+      font-style: italic;
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      color: rgba(212,206,212,0.88);
+    }
+
     /* ── Veil ── */
     #veil {
       position: fixed;
@@ -261,6 +286,7 @@
 </head>
 <body>
   <div id="veil"></div>
+  <div id="findme-intro"><span class="findme-text">Find me</span></div>
 
   <a href="./index.html" class="room-logo">F&thinsp;O&thinsp;R&thinsp;M&thinsp;A&thinsp;L&thinsp;D&thinsp;E&thinsp;H&thinsp;Y&thinsp;D&thinsp;E</a>
 
@@ -287,6 +313,21 @@
   </div>
 
   <script>
+    // First-visit "Find me" intro — desktop browser only
+    (function () {
+      const intro = document.getElementById('findme-intro');
+      if (!intro) return;
+      if (window.innerWidth <= 640 || localStorage.getItem('room_intro_seen')) {
+        intro.remove();
+        return;
+      }
+      localStorage.setItem('room_intro_seen', '1');
+      setTimeout(() => {
+        intro.classList.add('fade-out');
+        setTimeout(() => intro.remove(), 350);
+      }, 750);
+    })();
+
     const books = document.getElementById('books');
     const note  = document.getElementById('note');
     const veil  = document.getElementById('veil');
