@@ -69,13 +69,6 @@
 
     .book-zone:hover::before { opacity: 1; animation: none; }
 
-    .book-zone::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to top, rgba(7,7,7,0.55) 0%, transparent 50%);
-      pointer-events: none;
-    }
 
     /* Archive label — always visible */
     .book-label {
@@ -139,15 +132,7 @@
       pointer-events: none;
     }
 
-    .note-zone::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to top, rgba(7,7,7,0.55) 0%, transparent 50%);
-      pointer-events: none;
-    }
-
-    .note-label {
+.note-label {
       opacity: 1 !important;
       color: rgba(212,206,212,0.7);
     }
