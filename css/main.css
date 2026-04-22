@@ -237,13 +237,13 @@ a, button { cursor: crosshair; }
 specimen-card[specimen-id="001"] {
   grid-column: span 2;
   grid-row: span 2;
-  display: flex;
-  flex-direction: column;
+  position: relative;
 }
 
 specimen-card[specimen-id="001"] .grid-item {
   aspect-ratio: unset;
-  flex: 1;
+  position: absolute;
+  inset: 0;
 }
 
 /* ── Site Footer ── */
