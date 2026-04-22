@@ -49,8 +49,14 @@
       letter-spacing: 0.38em;
       color: var(--text-dim);
       text-transform: uppercase;
+      cursor: pointer;
       opacity: 0;
+      transition: color 0.4s var(--ease);
       animation: hint-in 1s var(--ease) 3.5s forwards;
+    }
+
+    .door-hint:hover {
+      color: var(--accent);
     }
 
     @keyframes hint-in {
@@ -82,15 +88,19 @@
 
   <script>
     const door = document.getElementById('door');
+    const hint = document.querySelector('.door-hint');
     const veil = document.getElementById('veil');
     let entered = false;
 
-    door.addEventListener('click', () => {
+    const handleEnter = () => {
       if (entered) return;
       entered = true;
       veil.classList.add('closing');
       setTimeout(() => { window.location.href = './archive.html'; }, 950);
-    });
+    };
+
+    door.addEventListener('click', handleEnter);
+    hint.addEventListener('click', handleEnter);
   </script>
 
 </body>

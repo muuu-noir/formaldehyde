@@ -625,6 +625,15 @@ specimen-card[specimen-id="001"] .grid-item {
     margin-bottom: 4rem;
   }
 
+  specimen-card[specimen-id="001"] {
+    grid-column: span 2;
+    grid-row: auto;
+  }
+  specimen-card[specimen-id="001"] .grid-item {
+    position: static;
+    aspect-ratio: 1 / 1.1;
+  }
+
   .grid-overlay { opacity: 1; }
   .grid-badge { display: none; }
 
