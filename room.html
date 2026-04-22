@@ -204,7 +204,7 @@
       justify-content: center;
       z-index: 99999;
       opacity: 1;
-      transition: opacity 0.4s ease;
+      transition: opacity 0.55s ease;
       pointer-events: none;
     }
 
@@ -217,7 +217,11 @@
       font-weight: 400;
       letter-spacing: 0.08em;
       color: rgba(212,206,212,0.88);
+      opacity: 0;
+      animation: findme-in 1s ease 0.2s forwards;
     }
+
+    @keyframes findme-in { to { opacity: 1; } }
 
     /* ── Veil ── */
     #veil {
@@ -324,8 +328,8 @@
       localStorage.setItem('room_intro_seen', '1');
       setTimeout(() => {
         intro.classList.add('fade-out');
-        setTimeout(() => intro.remove(), 400);
-      }, 1500);
+        setTimeout(() => intro.remove(), 550);
+      }, 2100);
     })();
 
     const books = document.getElementById('books');
