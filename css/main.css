@@ -65,6 +65,12 @@ h1, h2, h3 { font-weight: 400; }
 
 a, button { cursor: crosshair; }
 
+/* ── Nav delayed entry ── */
+@keyframes nav-appear {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
 /* ── Site Header ── */
 .site-header {
   position: fixed;
@@ -90,6 +96,8 @@ a, button { cursor: crosshair; }
 .site-nav {
   display: flex;
   gap: 2rem;
+  opacity: 0;
+  animation: nav-appear 1.2s var(--ease) 4.2s forwards;
 }
 
 .site-nav a {
@@ -117,6 +125,40 @@ a, button { cursor: crosshair; }
   border-bottom: 1px solid var(--line);
 }
 
+/* hero section itself does not animate — children do */
+.index-hero.reveal,
+.index-hero.reveal.visible {
+  opacity: 1;
+  transform: none;
+  transition: none;
+}
+
+.index-hero-label,
+.index-hero-title,
+.index-hero-sub {
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 1.4s var(--ease), transform 1.4s var(--ease);
+}
+
+.index-hero.visible .index-hero-label {
+  opacity: 0.7;
+  transform: translateY(0);
+  transition-delay: 0.4s;
+}
+
+.index-hero.visible .index-hero-title {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 1.6s;
+}
+
+.index-hero.visible .index-hero-sub {
+  opacity: 0.6;
+  transform: translateY(0);
+  transition-delay: 3.2s;
+}
+
 .index-hero-label {
   font-family: var(--mono);
   font-size: 0.75rem;
@@ -124,7 +166,6 @@ a, button { cursor: crosshair; }
   color: var(--text-muted);
   text-transform: uppercase;
   margin-bottom: 2.5rem;
-  opacity: 0.7;
 }
 
 .index-hero-title {

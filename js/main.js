@@ -42,8 +42,10 @@ import './components/case-slider.js';
     (entries) => {
       entries.forEach((entry, i) => {
         if (entry.isIntersecting) {
-          // Stagger delay for list items
-          const delay = entry.target.closest('.catalog-entry') ? i * 40 : 0;
+          const inGrid = !!entry.target.closest('.specimen-grid');
+          const delay = inGrid
+            ? Math.random() * 1000
+            : entry.target.closest('.catalog-entry') ? i * 40 : 0;
           setTimeout(() => {
             entry.target.classList.add('visible');
           }, delay);
