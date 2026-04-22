@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>FORMALDEHYDE</title>
+  <link rel="icon" href="https://mog147.github.io/img/profile/profile_avatar.png">
+  <link rel="stylesheet" href="css/main.css">
+  <style>
+    body {
+      overflow: hidden;
+      cursor: crosshair;
+      background: #070707;
+    }
+
+    /* ── Scene ── */
+    .scene {
+      position: fixed;
+      inset: 0;
+      opacity: 0;
+      animation: scene-in 2.2s var(--ease-out) 0.3s forwards;
+    }
+
+    @keyframes scene-in { to { opacity: 1; } }
+
+    /* Room illustration */
+    .room-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+      filter: brightness(0.78) saturate(0.88);
+      image-rendering: auto;
+    }
+
+    /* Vignette overlay */
+    .vignette {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 42% 52%,
+        transparent 30%, rgba(0,0,0,0.55) 100%);
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    /* ── Book zone (skull area on shelf) ── */
+    .book-zone {
+      position: absolute;
+      right: 20%;
+      top: 18%;
+      width: 24%;
+      height: 38%;
+      z-index: 10;
+      cursor: pointer;
+    }
+
+    /* Ambient pulse glow */
+    .book-zone::before {
+      content: '';
+      position: absolute;
+      inset: -10px;
+      background: radial-gradient(ellipse at 55% 48%,
+        rgba(138,120,136,0.22) 0%, transparent 68%);
+      opacity: 0.35;
+      animation: zone-pulse 3.5s ease-in-out infinite;
+      pointer-events: none;
+      transition: opacity 0.5s var(--ease);
+    }
+
+    .book-zone:hover::before { opacity: 1; animation: none; }
+
+    .book-zone::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border: 1px solid rgba(138,120,136,0.12);
+      opacity: 0;
+      transition: opacity 0.5s var(--ease);
+      pointer-events: none;
+    }
+
+    .book-zone:hover::after { opacity: 1; }
+
+    /* Archive label on hover */
+    .book-label {
+      position: absolute;
+      bottom: 13%;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.5em;
+      color: rgba(212,206,212,0.9);
+      text-transform: uppercase;
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity 0.5s var(--ease);
+      text-shadow: 0 1px 12px rgba(0,0,0,0.9), 0 0 20px rgba(0,0,0,0.8);
+      pointer-events: none;
+    }
+
+    .book-zone:hover .book-label { opacity: 1; }
+
+    /* ── Note zone (center-left = handwritten note) ── */
+    .note-zone {
+      position: absolute;
+      left: 14%;
+      top: 63%;
+      width: 22%;
+      height: 22%;
+      z-index: 10;
+      cursor: pointer;
+    }
+
+    .note-zone::before {
+      content: '';
+      position: absolute;
+      inset: -10px;
+      background: radial-gradient(ellipse at 50% 60%,
+        rgba(138,120,136,0.22) 0%, transparent 70%);
+      opacity: 0.35;
+      animation: zone-pulse 3.5s ease-in-out 1.75s infinite;
+      pointer-events: none;
+      transition: opacity 0.5s var(--ease);
+    }
+
+    .note-zone:hover::before { opacity: 1; animation: none; }
+
+    .note-label {
+      position: absolute;
+      bottom: -1.6rem;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.5em;
+      color: rgba(212,206,212,0.9);
+      text-transform: uppercase;
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity 0.5s var(--ease);
+      text-shadow: 0 1px 12px rgba(0,0,0,0.9), 0 0 20px rgba(0,0,0,0.8);
+      pointer-events: none;
+    }
+
+    .note-zone:hover .note-label { opacity: 1; }
+
+    /* Delayed hint text */
+    .room-hint {
+      position: absolute;
+      bottom: 5%;
+      right: 1.5%;
+      width: 26%;
+      text-align: center;
+      font-family: var(--mono);
+      font-size: 0.57rem;
+      letter-spacing: 0.36em;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      opacity: 0;
+      animation: hint-in 1s var(--ease) 3.5s forwards;
+      pointer-events: none;
+      z-index: 11;
+    }
+
+    @keyframes hint-in { to { opacity: 0.45; } }
+
+    .room-findme {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: clamp(1rem, 2vw, 1.4rem);
+      color: rgba(212,206,212,0.22);
+      letter-spacing: 0.08em;
+      pointer-events: none;
+      z-index: 5;
+      opacity: 0;
+      animation: findme-in 2s var(--ease) 3s forwards;
+    }
+
+    @keyframes findme-in { to { opacity: 1; } }
+
+    @keyframes zone-pulse {
+      0%, 100% { opacity: 0.2; }
+      50%       { opacity: 0.5; }
+    }
+
+    /* ── Veil ── */
+    #veil {
+      position: fixed;
+      inset: 0;
+      background: var(--bg);
+      opacity: 0;
+      pointer-events: none;
+      z-index: 9000;
+      transition: opacity 0.85s var(--ease);
+    }
+
+    #veil.closing { opacity: 1; }
+
+    /* ── Mobile: shift image right so books stay visible ── */
+    @media (max-width: 640px) {
+      .room-img {
+        object-position: right center;
+      }
+
+      .book-zone { width: 42%; }
+      .note-zone { display: none; }
+
+      .room-hint {
+        right: 50%;
+        transform: translateX(50%);
+        width: 60%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="veil"></div>
+
+  <div class="scene">
+    <img class="room-img" src="img/room.png" alt="" draggable="false">
+    <div class="vignette"></div>
+
+    <div class="book-zone" id="books">
+      <span class="book-label">Archive →</span>
+    </div>
+
+    <div class="note-zone" id="note">
+      <span class="note-label">About →</span>
+    </div>
+
+    <p class="room-findme">find me.</p>
+
+    <span class="room-hint">tap the shelf</span>
+  </div>
+
+  <script>
+    const books = document.getElementById('books');
+    const note  = document.getElementById('note');
+    const veil  = document.getElementById('veil');
+    let going = false;
+
+    const navigate = (url) => {
+      if (going) return;
+      going = true;
+      veil.classList.add('closing');
+      setTimeout(() => { window.location.href = url; }, 950);
+    };
+
+    books.addEventListener('click', () => navigate('./archive.html'));
+    note.addEventListener('click',  () => navigate('./about.html'));
+  </script>
+</body>
+</html>
