@@ -2,6 +2,17 @@
    FORMALDEHYDE · main.js
    ───────────────────────────────────────── */
 
+// Fade in from darkness on every page load
+(function () {
+  const veil = document.createElement('div');
+  veil.style.cssText = 'position:fixed;inset:0;background:#070707;z-index:9001;pointer-events:none;transition:opacity 1s ease;';
+  document.body.appendChild(veil);
+  requestAnimationFrame(() => requestAnimationFrame(() => {
+    veil.style.opacity = '0';
+    setTimeout(() => veil.remove(), 1100);
+  }));
+})();
+
 import './components/site-header.js';
 import './components/site-footer.js';
 import './components/specimen-card.js';
