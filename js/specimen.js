@@ -61,8 +61,8 @@ function renderSpecimen(s, all) {
 
   // Body Content
   let bodyHTML = '';
-  for (const [heading, paragraphs] of Object.entries(s.body)) {
-    bodyHTML += `<h2>${heading}</h2>`;
+  for (const [, paragraphs] of Object.entries(s.body)) {
+    if (bodyHTML !== '') bodyHTML += '<hr class="about-divider">';
     paragraphs.forEach(p => {
       bodyHTML += `<p>${p}</p>`;
     });
@@ -74,16 +74,16 @@ function renderSpecimen(s, all) {
   const prev = index > 0 ? all[index - 1] : null;
   const next = index < all.length - 1 ? all[index + 1] : null;
 
-  const prevLink = prev 
+  const prevLink = prev
     ? `<a href="specimen.html?id=${prev.id}" class="case-nav-link prev">
-        <span class="nav-dir">← Prev</span>
+        <span class="nav-dir">← prev specimen</span>
         <span class="nav-title">${prev.title}</span>
       </a>`
     : '<span></span>';
 
-  const nextLink = next 
+  const nextLink = next
     ? `<a href="specimen.html?id=${next.id}" class="case-nav-link next">
-        <span class="nav-dir">Next →</span>
+        <span class="nav-dir">next specimen →</span>
         <span class="nav-title">${next.title}</span>
       </a>`
     : '<span></span>';
