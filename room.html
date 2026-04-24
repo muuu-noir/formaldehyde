@@ -84,18 +84,19 @@
       text-transform: uppercase;
       white-space: nowrap;
       opacity: 1;
-      transition: color 0.4s var(--ease), background 0.4s var(--ease);
+      transition: color 0.4s var(--ease), background 0.4s var(--ease), box-shadow 0.4s var(--ease);
       pointer-events: none;
       background: rgba(7,7,7,0.55);
       backdrop-filter: blur(6px);
       -webkit-backdrop-filter: blur(6px);
       padding: 0.4rem 1rem;
-      border: 1px solid rgba(138,120,136,0.18);
+      box-shadow: 0 0 20px 14px rgba(7,7,7,0.45), 0 0 40px 20px rgba(7,7,7,0.25);
     }
 
     .book-zone:hover .book-label {
       color: rgba(212,206,212,1);
       background: rgba(7,7,7,0.7);
+      box-shadow: 0 0 24px 16px rgba(7,7,7,0.55), 0 0 50px 28px rgba(7,7,7,0.3);
     }
 
     /* ── Note zone (center-left = handwritten note) ── */
@@ -140,13 +141,14 @@
       backdrop-filter: blur(6px);
       -webkit-backdrop-filter: blur(6px);
       padding: 0.4rem 1rem;
-      border: 1px solid rgba(138,120,136,0.18);
-      transition: color 0.4s var(--ease), background 0.4s var(--ease);
+      transition: color 0.4s var(--ease), background 0.4s var(--ease), box-shadow 0.4s var(--ease);
+      box-shadow: 0 0 20px 14px rgba(7,7,7,0.45), 0 0 40px 20px rgba(7,7,7,0.25);
     }
 
     .note-zone:hover .note-label {
       color: rgba(212,206,212,1);
       background: rgba(7,7,7,0.7);
+      box-shadow: 0 0 24px 16px rgba(7,7,7,0.55), 0 0 50px 28px rgba(7,7,7,0.3);
     }
 
     /* Delayed hint text */
