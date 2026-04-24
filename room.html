@@ -297,7 +297,7 @@
   <a href="./index.html" class="room-logo">F&thinsp;O&thinsp;R&thinsp;M&thinsp;A&thinsp;L&thinsp;D&thinsp;E&thinsp;H&thinsp;Y&thinsp;D&thinsp;E</a>
 
   <div class="scene">
-    <img class="room-img" src="img/room.png" alt="" draggable="false">
+    <img class="room-img" id="room-img" src="img/room.png" alt="" draggable="false">
     <div class="vignette"></div>
 
     <div class="book-zone" id="books">
@@ -318,6 +318,10 @@
   </div>
 
   <script>
+    if (Math.random() < 1/3) {
+      document.getElementById('room-img').src = 'img/room_empty.png';
+    }
+
     // First-visit "Find me" intro — desktop browser only
     (function () {
       const intro = document.getElementById('findme-intro');
